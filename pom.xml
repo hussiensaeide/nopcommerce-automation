@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>ItqansystemsAutomationTask</artifactId>
+    <artifactId>OrangehrmliveTask</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -50,6 +50,27 @@
             <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Cucumber JVM dependencies -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>7.18.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>7.18.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>7.18.0</version>
+        </dependency>
+
+
     </dependencies>
 
 </project>

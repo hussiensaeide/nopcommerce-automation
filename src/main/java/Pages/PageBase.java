@@ -1,6 +1,6 @@
 package Pages;
 
-import lombok.SneakyThrows;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,7 +21,9 @@ public class PageBase {
     public PageBase(WebDriver driver) {
         this.driver = driver;
     }
-    public WebElement find(By locator){
+
+    public WebElement find(By locator)
+    {
         highlightElement(locator);
      return driver.findElement(locator);
     }
@@ -30,6 +32,7 @@ public class PageBase {
         Click(locator);
         find(locator).isEnabled();
         find(locator).clear();
+        waitElement(locator);
         find(locator).sendKeys(data);
     }
     public void waitElement(By locator) {
@@ -38,6 +41,7 @@ public class PageBase {
     }
 
     public void Click (By locator){
+        waitElement(locator);
         find(locator).click();
 }
     public String GetText(By locator){
@@ -68,6 +72,8 @@ public class PageBase {
         jsExecutor.executeScript("arguments[0].style.border='2px solid blue'", element);
         jsExecutor.executeScript("arguments[0].style.backgroundColor = 'red';", element);
     }
+
+
     public static String getCurrentDate() {
         return new SimpleDateFormat("dd-MM-yyyy hh.mm.ss a").format(new Date());
     }
@@ -92,6 +98,24 @@ public class PageBase {
             }
         }
     }
+    public boolean isDisabled(By locator) {
+        waitElement(locator);
+        WebElement element = (WebElement) driver.findElement(locator);
+        if (element.isEnabled()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    public void softAssertionTrue(By locator) {
+        waitElement(locator);
+        softAssert.assertTrue(isDisabled(locator));
+        if (getContent(locator).equals("True")) {
+            highlightAssertedElements(locator);
+        } else {
+            highlightUnAssertedElements(locator);
+        }
+    }
 
 }
